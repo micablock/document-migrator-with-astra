@@ -1,16 +1,16 @@
 from pymongo import MongoClient
-from mongo_migrator.migrator.confv import confs
+from doc_migrator.migrator.confv import confs
 
 class MongoConnect:
 
-  def dblist():
+  def dblist(): # MongoDB database list
     conf = confs.confval()
     host = conf['mongohost']+':'+conf['mongoport']
     client = MongoClient(host=host,serverSelectionTimeoutMS = 3000)
     dblist = client.list_database_names()
     return dblist
 
-  def dbcollist(dbname):
+  def dbcollist(dbname): # MongoDB database collection list
     conf = confs.confval()
     host = conf['mongohost']+':'+conf['mongoport']
     client = MongoClient(host=host,serverSelectionTimeoutMS = 3000)
@@ -18,7 +18,7 @@ class MongoConnect:
     dbcol = mydb.list_collection_names()
     return dbcol
   
-  def count(dbname,colname):
+  def count(dbname,colname): # MongoDB database collection documents count
     conf = confs.confval()
     host = conf['mongohost']+':'+conf['mongoport']
     client = MongoClient(host=host,serverSelectionTimeoutMS = 3000)

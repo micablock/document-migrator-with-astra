@@ -6,8 +6,8 @@ import uuid
 import requests
 import json
 from pprint import pprint
-from mongo_migrator.migrator.authenticator import auth
-from mongo_migrator.migrator.confv import confs
+from doc_migrator.migrator.authenticator import auth
+from doc_migrator.migrator.confv import confs
 
 
 @shared_task(bind=True)

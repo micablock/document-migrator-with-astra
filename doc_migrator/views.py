@@ -1,8 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
-from mongo_migrator.migrator.mongoconnect import MongoConnect
-from mongo_migrator.migrator.datamigrate import migrator
-from mongo_migrator.migrator.authenticator import auth
+from doc_migrator.migrator.mongoconnect import MongoConnect
+from doc_migrator.migrator.authenticator import auth
 from .tasks import go_to_sleep
 
 def index(request):
@@ -20,9 +19,7 @@ def index(request):
         colname = request.GET.get('colname')
         mongodbname = request.GET.get('dbn')
         variablestr = colname+" "+mongodbname
-        print(colname)
         token = auth.authenticate()
-        print(colname)
         params = {'duration':.25,'colname':colname,'mongodbname':mongodbname}
         task = go_to_sleep.delay(params)
         count = MongoConnect.count(mongodbname,colname)

@@ -1,10 +1,10 @@
 import requests
 import json
-from mongo_migrator.migrator.confv import confs
+from doc_migrator.migrator.confv import confs
 
 class auth:
 
-    def authenticate():
+    def authenticate(): # Astra Authentication 
        conf = confs.confval()
        CLUSTERID = conf['clusterid']
        REGION = conf['region']

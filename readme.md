@@ -4,11 +4,11 @@ This application helps to migrate documents out of Document based databases to D
 
 
 ## High Level Architecture 
-Key components 
-- Document Database : MongoDB
-- Application : Django, celery, redis 
+
 - Stargate document API
 - DataStax Astra 
+- Application : Django, celery, redis 
+- Document Database : MongoDB
 
 
 ![](images/MongoMigratorArchitecturefinal.png)
@@ -33,7 +33,7 @@ namespace=Astra Keyspace Name
 
 ## Key Components 
 
-### 1. Stargate API 
+#### 1. Stargate API 
 
 The key to being able to migrate or add documents in Astra is the Amazing stargate API. Here is an example of building the stargate document API, something similar to what we have used in the written application. 
 
@@ -49,17 +49,24 @@ The key to being able to migrate or add documents in Astra is the Amazing starga
 
 Make sure you pass a unique document id per API request during document migration. Each document Id is refers to a single partition in Astra. 
 
-Check `tasks.py` for more details. 
+Check `tasks.py` for more details.
 
-### CELERY For Task Progress in Django 
+#### 2. DataStax Astra
+
+Get started with Astra at ```https://astra.datastax.com/``` and create a database.
+
+https://docs.astra.datastax.com/docs/creating-your-astra-database
+
+#### 3. Celery For Task Progress in Django 
 
 Make sure to run both the Celery worker and Django app. Again, the celery broker is optional and is required only because of the progress bar feature in the app. You can use the same code and write it another way to capture document progress. 
 
-Follow this link on how to setup Django and CELERY. 
+Follow this link on how to setup Django and CELERY: 
 
 https://docs.celeryproject.org/en/stable/django/first-steps-with-django.html
 
 Follow this link to use redis as broker with CELERY:
+
 https://docs.celeryproject.org/en/stable/getting-started/brokers/redis.html
 
 ## Running the Application 
@@ -72,11 +79,12 @@ Run the django app
 
 ```python manage.py runserver```
 
+
 ## Application Flow
 1. Home page to connect to mongodb databses
 ![](images/home.png)
 
-2. Click datbase to identify collections to migrate 
+2. Click database to identify collections to migrate 
 ![](images/clickConnect.png)
 
 3. Click collection to migrate data
@@ -84,3 +92,9 @@ Run the django app
 
 4. Migration Status page
 ![](images/MigrationStatus.png)
+
+### Python Dependencies 
+Check `requirements.txt` 
+
+key libraries : `Django, django-celery-results, celery, celery-progress, pymongo.`
+ 
