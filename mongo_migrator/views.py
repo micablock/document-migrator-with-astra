@@ -20,7 +20,9 @@ def index(request):
         colname = request.GET.get('colname')
         mongodbname = request.GET.get('dbn')
         variablestr = colname+" "+mongodbname
+        print(colname)
         token = auth.authenticate()
+        print(colname)
         params = {'duration':.25,'colname':colname,'mongodbname':mongodbname}
         task = go_to_sleep.delay(params)
         count = MongoConnect.count(mongodbname,colname)

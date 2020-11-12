@@ -7,6 +7,7 @@ import requests
 import json
 from pprint import pprint
 from mongo_migrator.migrator.authenticator import auth
+from mongo_migrator.migrator.confv import confs
 
 
 @shared_task(bind=True)
@@ -16,7 +17,9 @@ def go_to_sleep(self,params):
   duration = params['duration']
   colname = params['colname']
   mongodbname = params['mongodbname']
-  client = MongoClient(host='34.227.105.4:27017',serverSelectionTimeoutMS = 3000)
+  conf = confs.confval()
+  host = conf['mongohost']+':'+conf['mongoport']
+  client = MongoClient(host=host,serverSelectionTimeoutMS = 3000)
   mydb = client[mongodbname]
   aircol = mydb[colname]
   doccount = aircol.count_documents({})
@@ -27,11 +30,13 @@ def go_to_sleep(self,params):
     "x-cassandra-token": str(token),
     "content-type": "application/json"
   }
-
-  URL = "https://c72c60e1-d1c1-4730-8d6a-413abce921ff-us-east-1.apps.astra.datastax.com"
-  COLLECTION = "mongo_airlines"
-  NAMESPACE = "mongo_migrator"
   
+  CLUSTERID = conf['clusterid']
+  REGION = conf['region']
+  COLLECTION = conf['collection']
+  NAMESPACE = conf['namespace']
+  URL = f"https://{CLUSTERID}-{REGION}.apps.astra.datastax.com"
+
   for i in range(doccount):
     sleep(.25)
     if i==0:
@@ -55,5 +60,5 @@ def go_to_sleep(self,params):
         pprint(response.text)
     progress_recorder.set_progress(i+1,doccount)
 
-  return 'Done'
+  return 'All Documents Processed !! '
 

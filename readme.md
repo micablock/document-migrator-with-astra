@@ -27,17 +27,17 @@ Key components
 
 ## Configuration 
 
-All configurations to be setup within `config.conf`
+All configurations to be setup within `config.ini`
 
 ```
-[Mongo]
- "host":"34.227.105.4"
- "port":"27017"
+[mongo]
+host=34.227.105.4
+port=27017
 
-[Astra]
- "clusterid": "c72c60e1-d1c1-4730-8d6a-413abce921ff"
- "region": "us-east-1"
- "username": *************
- "password": *************
- "collection" = "mongo_airlines"
- "namespace" = "mongo_migrator"
+[astra]
+clusterid=Astra Cluster ID
+region=Astra Cluster Region
+username=Astra Database Name
+password=Astra Database Password
+collection=Astra Table name 
+namespace=Astra Keyspace Name

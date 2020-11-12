@@ -1,19 +1,25 @@
 import requests
 import json
+from mongo_migrator.migrator.confv import confs
 
 class auth:
 
     def authenticate():
-      url = "https://c72c60e1-d1c1-4730-8d6a-413abce921ff-us-east-1.apps.astra.datastax.com/api/rest/v1/auth"
-      payload = {
-                      "username": "mongo_migrator",
-                      "password": "mongo_migrator"
+       conf = confs.confval()
+       CLUSTERID = conf['clusterid']
+       REGION = conf['region']
+       USERNAME = conf['username']
+       PASSWORD = conf['password']
+       url = f"https://{CLUSTERID}-{REGION}.apps.astra.datastax.com/api/rest/v1/auth"
+       payload = {
+                      "username": USERNAME,
+                      "password": PASSWORD
                    }
-      headers = {
+       headers = {
                       "accept": "*/*",
                       "x-cassandra-request-id": "134",
                       "content-type": "application/json"
                    }
-      response = requests.request("POST", url, json=payload, headers=headers)
-      token = json.loads(response.text)['authToken']
-      return token
+       response = requests.request("POST", url, json=payload, headers=headers)
+       token = json.loads(response.text)['authToken']
+       return token
