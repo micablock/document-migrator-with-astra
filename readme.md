@@ -18,4 +18,4 @@ This application helps to migrate documents out of Document based databases to D
 
 ## High Level Architecture 
 
-![](images/MongoMigratorArchitecture.png)
+![](images/MongoMigratorArchitecturefinal.png)
