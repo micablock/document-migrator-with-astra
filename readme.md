@@ -82,16 +82,16 @@ Run the django app
 
 ## Application Flow
 1. Home page to connect to mongodb databses
-![](images/home.png)
-
-2. Click database to identify collections to migrate 
-![](images/clickConnect.png)
-
-3. Click collection to migrate data
 ![](images/Click-Documents.png)
 
+2. Click database to identify collections to migrate 
+![](images/clickconnect.png)
+
+3. Click collection to migrate data
+![](images/ClickMigrate.png)
+
 4. Migration Status page
-![](images/MigrationStatus.png)
+![](images/MigrateData.png)
 
 ### Python Dependencies 
 Check `requirements.txt` 
