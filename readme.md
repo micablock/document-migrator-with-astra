@@ -85,7 +85,7 @@ Run the django app
 ![](images/Click-Documents.png)
 
 2. Click database to identify collections to migrate 
-![](images/clickconnect.png)
+![](images/ClickConnect.png)
 
 3. Click collection to migrate data
 ![](images/ClickMigrate.png)
