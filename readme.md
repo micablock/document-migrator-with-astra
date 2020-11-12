@@ -17,5 +17,27 @@ This application helps to migrate documents out of Document based databases to D
 
 
 ## High Level Architecture 
+Key components 
+- Document Database : MongoDB
+- Application : Django, celery, redis 
+- Stargate document API
+- DataStax Astra 
 
 ![](images/MongoMigratorArchitecturefinal.png)
+
+## Configuration 
+
+All configurations to be setup within `config.conf`
+
+```
+[Mongo]
+ "host":"34.227.105.4"
+ "port":"27017"
+
+[Astra]
+ "clusterid": "c72c60e1-d1c1-4730-8d6a-413abce921ff"
+ "region": "us-east-1"
+ "username": *************
+ "password": *************
+ "collection" = "mongo_airlines"
+ "namespace" = "mongo_migrator"
