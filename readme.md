@@ -3,7 +3,7 @@
 This application helps to migrate documents out of Document based databases to DataStax Astra. This example application uses mongoDB as source of documents that are migrated to Astra using this application.
 
 
-## High Level Architecture 
+## High Level Architecture for the Application
 
 - Stargate document API
 - DataStax Astra 
@@ -80,7 +80,7 @@ Run the django app
 ```python manage.py runserver```
 
 
-## Application Flow
+## Application Flow 
 1. Home page to connect to mongodb databses
 ![](images/Click-Documents.png)
 
