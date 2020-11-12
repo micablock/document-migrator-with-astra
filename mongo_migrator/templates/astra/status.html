@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Migration flow</title>
+      <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+</head>
+
+<body>
+  <!-- Begin page content -->
+  <main role="main" class="container">
+    <h1 class="mt-5"> Migration status</h1>
+    <p class="font-weight-bold">Track migration status below for the initiated migration.</p>
+    <br>
+    <p class="lead">Total Documents to be migrated : {{count}} </p>
+    <div class='progress-wrapper'>
+      <div id='progress-bar' class='progress-bar bg-success' style="width: 25%" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100">&nbsp;</div>
+    </div>
+    <div id="progress-bar-message">Waiting for progress to start...</div>
+    <script src="{% static 'celery_progress/celery_progress.js' %}"></script>
+    <script>
+    // vanilla JS version
+       document.addEventListener("DOMContentLoaded", function () {
+            var progressUrl = "{% url 'celery_progress:task_status' task_id %}";
+           CeleryProgressBar.initProgressBar(progressUrl);
+       });
+    </script>
+    <a href="/mongo-migrator/">back > </a>
+  </main>
+</body>
+</html>

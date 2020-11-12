@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    {% load static %}
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+  </head>
+
+  <body>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+      <h1 class="mt-5" style="color:#03A611">Welcome to Mongo Mover !! </h1>
+      <p class="font-weight-bold">Making your mongo migration experiences like chilling on the beach. Mongo Mover lets you migrate collection documents from your mongodb database to DataStax Astra (YAY!!) with no effort. Use <a href="../sticky-footer-navbar/">documenation to understand</a> how it works behind the scene.</p>
+      <br>
+      <br>
+      <h4> Connect to Mongo DB </h4>
+      <form action="" method="post">
+        {% csrf_token %}
+        {{ form }}
+        <p> Click 'Connect' initate the mongodb connection and to get databases, collections and total documents for migration info.</p>
+        <input name="q" type="search" value="{{request.POST.q}}" hidden="hidden">
+        <button type="submit" class="btn btn-warning" value="{{request.POST.q}}">CONNECT</button>
+      </form>
+      <br>
+        {% for dbl in dblist %} 
+          <form action="" method="GET">
+            {% csrf_token %}
+            {{ form }}
+            <input name="dbname" type="text" value={{dbl}} hidden="hidden">
+            <br>
+            <button name="name" type="submit" class="btn btn-dark">{{dbl}}</button>
+          </form>  
+        {% endfor %} 
+        <br>
+        {% for colname in dbcol %} 
+          <form action="" method="GET">
+            {% csrf_token %}
+            {{ form }}
+            <input name="colname" type="text" value={{colname}} hidden="hidden">
+            <input name="dbn" type="text" value={{dbname}} hidden="hidden">
+            <br>
+            <button name="name" type="submit" class="btn btn-success">Migrate {{dbname}}.{{colname}}</button>
+          </form>  
+        {% endfor %} 
+      <p style="color:#B50B24" >{{result}}</p>
+      <br>
+      <br>
+      
+      
+    </main>
+
+  </body>
+</html>
