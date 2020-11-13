@@ -15,7 +15,7 @@ This application helps to migrate documents out of Document based databases to D
 
 ## Configuration 
 
-All configurations to be setup within `config.ini`
+All configurations to be setup within `config.ini`. Make changes to the config.ini file with correct parameters to make the connections to Astra Database and Mongodb instance.
 
 ```
 [mongo]
@@ -85,7 +85,7 @@ Run the django app
 ![](images/Click-Documents.png)
 
 2. Click database to identify collections to migrate 
-![](images/ClickConnect.png)
+![](images/clickConnect.png)
 
 3. Click collection to migrate data
 ![](images/ClickMigrate.png)
